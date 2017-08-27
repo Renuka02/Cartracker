@@ -1,5 +1,7 @@
 package com.spring.entity;
 
+import java.security.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
@@ -38,6 +42,7 @@ public class Readings {
 	
 	@Column(name = "longitude")
 	private float longitude;
+	
 	
 	@Column(name = "timestamp")
 	private String timestamp;

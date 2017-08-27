@@ -1,7 +1,10 @@
 package com.tracker.cartracker;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.dataclasses.HighAlerts;
+import com.spring.dataclasses.LatitudeLongitude;
 import com.spring.entity.Reading;
 import com.spring.entity.Readings;
 import com.spring.entity.Vehicle;
@@ -59,11 +64,42 @@ public class CarTrackerController {
 	}
 	
 	@CrossOrigin
+	@RequestMapping(value = "/readvehicles/{vin}", method = RequestMethod.GET , produces = MediaType.APPLICATION_JSON_VALUE)
+	public Vehicle getVehicleByVin(@PathVariable(value= "vin") String vin){
+		Vehicle v = cartrackerservice.returnVehicle(vin);
+		return v;
+	}
+	
+	@CrossOrigin
 	@RequestMapping(value="/getreading/{vin}" , method = RequestMethod.GET , produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Readings> getReadings(@PathVariable(value = "vin") String vin){
 		List<Readings> result = cartrackerservice.returnReadingsOfVehicle(vin);
 		return result;
 	}
 	
+	@CrossOrigin
+	@RequestMapping(value="/getreading/{vin}/{hour}/{minutes}" , method = RequestMethod.GET , produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Readings> getLocation(@PathVariable(value = "vin")String vin , @PathVariable(value = "hour")int hours , @PathVariable(value = "minutes")int minutes){
+		List<Readings> result = cartrackerservice.returnReadingsOfVehicle(vin , hours , minutes);
+		return result;
+	}
+	
+	@CrossOrigin
+	@RequestMapping(value = "/gethighalerts" , method = RequestMethod.GET , produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<HighAlerts> getHighAlertCount(){
+		List<HighAlerts> result = cartrackerservice.returnReadingsofHighAlerts();
+		return result;
+	}
+	
+	
+	@CrossOrigin
+	@RequestMapping(value = "/getlocation/{vin}" , method = RequestMethod.GET , produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<LatitudeLongitude> getLocation(@PathVariable(value = "vin") String vin){
+		List<LatitudeLongitude> result = cartrackerservice.returnLatLng(vin);
+		return result;
+	}
 	
 }
+
+
+

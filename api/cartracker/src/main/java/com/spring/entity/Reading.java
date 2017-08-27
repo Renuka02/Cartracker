@@ -1,5 +1,7 @@
 package com.spring.entity;
 
+import java.security.Timestamp;
+
 public class Reading {
 
 	public Reading(){
