@@ -1,0 +1,17 @@
+header, footer {
+    padding: 13px;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+.divStyle{
+    height: 500px;
+    margin: 20px;
+}
+row{
+    margin: 0px;
+}
+column{
+    padding: 0px;
+}

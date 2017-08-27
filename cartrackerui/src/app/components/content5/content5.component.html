@@ -1,0 +1,80 @@
+<div >
+  <bootstrap-grid>
+    <row >
+      <column sm="2" md="2" lg="2" >  
+            <h4>Select Vehicle : </h4>
+      </column>
+      <column sm="8" md="8" lg="8">
+              <select class="form-control" id="sel1" [(ngModel)]="vinId">
+                <option *ngFor="let vehicle of allVehicles"
+                  value={{vehicle.vin}}>
+                    {{vehicle.make}} {{vehicle.model}} ({{vehicle.vin}})
+                </option>
+              </select>
+      </column>
+      <column sm="2" md="2" lg="2" style="padding:0px 50px;">
+        <button class="btn btn-primary" (click) = "onSubmitClicked(vinId)"> Submit </button>
+      </column>
+    </row>
+  </bootstrap-grid>
+
+  <div class="table-responsive" *ngIf="showDetails" style="padding-bottom:20px;">          
+    <table class="table table-bordered table-striped" style="margin-bottom:0px;">
+      <thead>
+        <tr>
+          <th class="success">VIN</th>
+          <th class="success">MAKE</th>
+          <th class="success">MODEL</th>
+          <th class="success">YEAR</th>
+          <th class="success">REDLINE RPM</th>
+          <th class="success">MAX FUEL VOLUME</th>
+          <th class="success">LAST SERVICE DATE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{vehicleData.vin}}</td>
+          <td>{{vehicleData.make}}</td>
+          <td>{{vehicleData.model}}</td>
+          <td>{{vehicleData.year}}</td>
+          <td>{{vehicleData.redlineRpm}}</td>
+          <td>{{vehicleData.maxFuelVolume}}</td>
+          <td>{{vehicleData.lastServiceDate}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-responsive" *ngIf="showDetails" style="padding-top:0px;">          
+    <table class="table table-bordered table-striped ">
+      <thead>
+        <tr>
+          <th class="success">#</th>
+          <th class="success">FUEL VOLUME</th>
+          <th class="success">ENGINE LIGHT ON</th>
+          <th class="success">ENGINE COOLANT LOW</th>
+          <th class="success">ENGINE RPM</th>
+          <th class="success">FRONT LEFT TIRE PRESSURE</th>
+          <th class="success">FRONT RIGHT TIRE PRESSURE</th>
+          <th class="success">REAR LEFT TIRE PRESSURE</th>
+          <th class="success">REAR RIGHT TIRE PRESSURE</th>
+          <th class="success">PRIORITY ALERT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reading of allHistoricalAlerts;let i = index">
+          <td>{{i}}</td>
+          <td>{{reading.fuelVolume}}</td>
+          <td>{{reading.checkEngineLightOn}}</td>
+          <td>{{reading.engineCoolantLow}}</td>
+          <td>{{reading.engineRpm}}</td>
+          <td>{{reading.tirefrontleft}}</td>
+          <td>{{reading.tirefrontright}}</td>
+          <td>{{reading.tirerearleft}}</td>
+          <td>{{reading.tirerearright}}</td>
+          <td>{{reading.alert_priority}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

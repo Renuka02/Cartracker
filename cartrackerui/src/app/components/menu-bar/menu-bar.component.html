@@ -1,0 +1,9 @@
+<div class = "list-group">
+    <a *ngFor="let col of cols; let i = index" 
+        class="list-group-item" 
+        [ngClass]="{active:show==(i+1)}" 
+        (click)="changeContent(i+1)" 
+        routerLink={{col.link}}>
+            {{col.label}}
+    </a>
+</div>

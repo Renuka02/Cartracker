@@ -1,0 +1,89 @@
+<div>
+    <bootstrap-grid>
+      <row >
+        <column sm="2" md="2" lg="2" >  
+              <h4>Select Vehicle : </h4>
+        </column>
+        <column sm="8" md="8" lg="8">
+                <select class="form-control" id="sel1" [(ngModel)]="vinId">
+                  <option *ngFor="let vehicle of allVehicles"
+                    value={{vehicle.vin}}>
+                      {{vehicle.make}} {{vehicle.model}} ({{vehicle.vin}})
+                  </option>
+                </select>
+        </column>
+        <column sm="2" md="2" lg="2" style="padding:0px 50px;">
+          <button class="btn btn-primary" (click) = "onSubmitClicked(vinId,timeNumber,timeFrame,signalField)"> Submit </button>
+        </column>
+      </row>
+      <row>
+        <column sm="5" md="5" lg="5">  
+          <h4>Select time range</h4>
+          <row>
+            <h5>Enter Time :</h5>
+            <column sm="3" md="3" lg="3">
+                <div class="input-group">
+                  <input id="time" type="number" class="form-control" name="timeNumber" [(ngModel)]="timeNumber">
+                </div>
+            </column>
+            <h5>Select Time Frame :</h5>
+            <column sm="3" md="3" lg="3">
+                <select class="form-control" id="sel1" [(ngModel)]="timeFrame">
+                  <option value="min">min(s)</option>
+                  <option value="hr">hr(s)</option>
+                </select>
+            </column>
+          </row>
+        </column>
+        <column sm="6" md="6" lg="6">
+          <h4>Select vehicle specific signal</h4>
+          <row>
+            <column>
+              <label *ngFor="let col of cols" class="radio-inline">
+                <input type="radio" [(ngModel)]="signalField" name="signalField" value={{col}}>
+                {{col}}
+              </label>
+            </column>
+          </row>
+        </column>
+      </row>
+    </bootstrap-grid>
+
+    <div style = "width: 1000px;" *ngIf = "showgraph">
+        <ngx-charts-bar-vertical
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="results"
+        [gradient]="true"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        (select)="onSelect($event)">
+        </ngx-charts-bar-vertical>
+    </div>
+
+    <div style = "width: 1000px;" *ngIf = "showgraph2d">
+        <ngx-charts-line-chart
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="results"
+        [gradient]="true"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [autoScale]="autoScale"
+        (select)="onSelect($event)">
+      </ngx-charts-line-chart>
+    </div>
+    
+
+
+</div>

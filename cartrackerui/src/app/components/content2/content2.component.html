@@ -1,0 +1,20 @@
+<div class="table-responsive">          
+  <table class="table table-bordered table-striped ">
+    <thead>
+      <tr>
+        <th class="success">VIN</th>
+        <th class="success">MAKE</th>
+        <th class="success">MODEL</th>
+        <th class="success">HIGH ALERT COUNT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vehicle of vehicles">
+        <td>{{vehicle.vin}}</td>
+        <td>{{vehicle.make}}</td>
+        <td>{{vehicle.model}}</td>
+        <td>{{vehicle.alertCount}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

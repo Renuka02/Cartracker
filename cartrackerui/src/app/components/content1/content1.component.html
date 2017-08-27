@@ -1,0 +1,26 @@
+<div class="table-responsive">          
+  <table class="table table-bordered table-striped ">
+    <thead>
+      <tr>
+        <th class="success">VIN</th>
+        <th class="success">MAKE</th>
+        <th class="success">MODEL</th>
+        <th class="success">YEAR</th>
+        <th class="success">REDLINE RPM</th>
+        <th class="success">MAX FUEL VOLUME</th>
+        <th class="success">LAST SERVICE DATE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vehicle of vehicles">
+        <td>{{vehicle.vin}}</td>
+        <td>{{vehicle.make}}</td>
+        <td>{{vehicle.model}}</td>
+        <td>{{vehicle.year}}</td>
+        <td>{{vehicle.redlineRpm}}</td>
+        <td>{{vehicle.maxFuelVolume}}</td>
+        <td>{{vehicle.lastServiceDate}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

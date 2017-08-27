@@ -1,0 +1,27 @@
+<div >
+    <bootstrap-grid>
+      <row >
+        <column sm="2" md="2" lg="2" >  
+              <h4>Select Vehicle : </h4>
+        </column>
+        <column sm="8" md="8" lg="8">
+                <select class="form-control" id="sel1" [(ngModel)]="vinId">
+                  <option *ngFor="let vehicle of allVehicles"
+                    value={{vehicle.vin}}>
+                      {{vehicle.make}} {{vehicle.model}} ({{vehicle.vin}})
+                  </option>
+                </select>
+        </column>
+        <column sm="2" md="2" lg="2" style="padding:0px 50px;">
+          <button class="btn btn-primary" (click) = "onSubmitClicked(vinId)"> Submit </button>
+        </column>
+      </row>
+    </bootstrap-grid>
+  <div style="padding-top:20px;">
+  <agm-map [latitude]="lat" [longitude]="lng">
+    <div *ngFor = "let loc of locations">
+      <agm-marker [latitude]="loc.latitude" [longitude]="loc.longitude"></agm-marker>
+    </div>
+  </agm-map>
+  </div>
+</div>
